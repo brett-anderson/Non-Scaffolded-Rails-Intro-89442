@@ -30,7 +30,11 @@ class PostsController < ApplicationController
       # Validations fail we reuse the view associated with the
       # new action.
       render :action => :new
-    end
-    
+    end    
   end # Only loads a view on error, otherwise redirects.
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to :action => :index
+  end #No destroy.html.erb needs to exist, we always redirect
 end
